@@ -100,7 +100,7 @@ RSpec.describe Player, type: :model do
       end
 
       context 'experience' do
-        it 'experience is greater than 0' do
+        it 'experience is greater than or equal to 0' do
           player = Player.create( { username: 'test1',
                                     email_address: 'test@test.com',
                                     password: 'test',
