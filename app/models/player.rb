@@ -1,4 +1,7 @@
 class Player < ApplicationRecord
+  has_many :playersbuildings
+  has_many :buildings, { through: :playersbuildings }
+
   has_secure_password
 
   validates :email_address, :username, { presence: true,
