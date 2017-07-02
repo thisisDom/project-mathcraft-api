@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170702010805) do
+ActiveRecord::Schema.define(version: 20170702023813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buildings", force: :cascade do |t|
+    t.string "asset_link", null: false
+    t.integer "width", default: 1, null: false
+    t.integer "height", default: 1, null: false
+    t.string "building_class", null: false
+    t.integer "building_level", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["asset_link"], name: "index_buildings_on_asset_link"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "username", null: false
