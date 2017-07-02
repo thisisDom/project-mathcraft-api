@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+max_level = 15
+while Experience.count < max_level
+  i = Experience.count
+  exp = i ** 3
+  Experience.create({ level: i, experience_needed: exp })
+end
