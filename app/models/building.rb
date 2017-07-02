@@ -1,4 +1,6 @@
 class Building < ApplicationRecord
+  has_many :playersbuildings
+  has_many :players, { through: :playersbuildings }
 
   validates :asset_link, { presence: true,
                            uniqueness: { case_sensetive: false }
@@ -9,4 +11,5 @@ class Building < ApplicationRecord
                                                                greater_than_or_equal_to: 1
                                                              }
                                                }
+  
 end
