@@ -19,9 +19,26 @@ RSpec.describe BuildingsResource, type: :model do
       expect(buildingsresource.resource_id).to eq 1
     end
   end
-
+  describe 'validations' do
+    let(:resource) { Resource.create({ name: 'wood' }) }
+    let(:building) { Building.create({  asset_link: "/path/to/asset",
+                                        width: 1,
+                                        height: 1,
+                                        building_class: 'resource',
+                                        building_level: 1,
+                                      }) }
+    context 'quantity' do
+      it 'is greater than or equal to 0' do
+        buildingsresource = BuildingsResource.create({ resource: resource,
+                                                       building: building,
+                                                       quantity: -1
+                                                     })
+        expect(buildingsresource.errors.full_messages.length).to eq 1
+      end
+    end
+  end
   describe 'associations' do
-    let(:resource) { Resource.create({name: 'wood' }) }
+    let(:resource) { Resource.create({ name: 'wood' }) }
     let(:building) { Building.create({  asset_link: "/path/to/asset",
                                         width: 1,
                                         height: 1,
