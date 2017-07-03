@@ -20,6 +20,30 @@ RSpec.describe PlayersBuilding, type: :model do
     end
   end
 
+  describe 'validations' do
+    context 'location' do
+      let(:player) { Player.create({username: 'test',
+                                    email_address: 'test@test.com',
+                                    password: 'test',
+                                    experience: 0,
+                                    avatar_asset_link: '/path/to/asset/link.jpg'}) }
+      let(:building) { Building.create({  asset_link: "/path/to/asset",
+                                          width: 1,
+                                          height: 1,
+                                          building_class: 'resource',
+                                          building_level: 1,
+                                        }) }
+      it 'is present' do
+        playersbuilding = PlayersBuilding.create({ player: player,
+                                                  building: building,
+                                                 })
+
+
+        expect(playersbuilding.errors.full_messages.length).to eq 1
+      end
+    end
+  end
+
   describe 'associations' do
     let(:player) { Player.create({username: 'test',
                                   email_address: 'test@test.com',
