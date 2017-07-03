@@ -1,4 +1,7 @@
 class Player < ApplicationRecord
+  has_many :playersresource
+  has_many :resources, { through: :playersresource }
+
   has_many :level_attempts, { class_name: 'PlayersLevel' }
   has_many :levels, { through: :level_attempts }
 
