@@ -30,6 +30,11 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Used for encoding and decoding authentication tokens
+gem 'jwt'
+# Used for creating service helper for API requests
+gem 'simple_command'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
