@@ -15,6 +15,14 @@ RSpec.describe Level, type: :model do
       level.position = 1
       expect(level.position).to eq 1
     end
+
+    it 'has a card set' do
+      level.cards = [['4+5', '9']]
+      expect(level.cards).to be_a(Array)
+      expect(level.cards[0]).to be_a(Array)
+      expect(level.cards[0][0]).to be_a(String)
+      expect(level.cards[0][1]).to be_a(String)
+    end
   end
 
   describe 'validations' do

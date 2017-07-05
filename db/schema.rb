@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170703050854) do
   create_table "levels", force: :cascade do |t|
     t.string "assets", null: false, array: true
     t.integer "position", null: false
+    t.text "cards", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["position"], name: "index_levels_on_position", unique: true
