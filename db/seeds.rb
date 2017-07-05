@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+RegisteredApp.create({email_address: 'project-mathcraft', password: 'fishsticks'})
+
 max_level = 15
 while Experience.count < max_level
   i = Experience.count
