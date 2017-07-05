@@ -1,4 +1,4 @@
-class AuthenticatePlayer
+class AuthenticateApp
 
   prepend SimpleCommand
 
@@ -8,16 +8,16 @@ class AuthenticatePlayer
   end
 
   def call
-    JsonWebToken.encode(user_id: player.id) if player
+    JsonWebToken.encode(user_id: user.id) if user
   end
 
   private
 
   attr_accessor :email, :password
 
-  def player
-    player = Player.find_by(email: email)
-    return player if player && player.authenticate(password)
+  def user
+    user = RegisteredApps.find_by(email_address: email_address)
+    return user if user && user.authenticate(password)
     errors.add(:user_authentication, 'invalid email or password')
     nil
   end

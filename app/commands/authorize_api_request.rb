@@ -1,5 +1,5 @@
 class AuthorizeApiRequest
-  
+
   prepend SimpleCommand
 
   def initialize(headers = {})
@@ -7,16 +7,16 @@ class AuthorizeApiRequest
   end
 
   def call
-    player
+    user
   end
 
   private
 
   attr_reader :headers
 
-  def player
-    @player ||= Player.find(decoded_auth_token[:player_id]) if decoded_auth_token
-    @player || errors.add(:token, 'Invalid Token') && nil
+  def user
+    @user ||= RegisteredApp.find(decoded_auth_token[:user_id]) if decoded_auth_token
+    @user || errors.add(:token, 'Invalid Token') && nil
   end
 
   def decoded_auth_token
