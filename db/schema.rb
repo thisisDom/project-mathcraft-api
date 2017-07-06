@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20170705180854) do
     t.string "username", null: false
     t.string "email_address", null: false
     t.string "password_digest", null: false
+    t.boolean "login_status", default: true
     t.string "avatar_asset_link"
     t.integer "experience", default: 0, null: false
     t.datetime "created_at", null: false
