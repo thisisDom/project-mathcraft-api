@@ -4,3 +4,12 @@ before_script:
   - bundle exec rake db:drop RAILS_ENV=test
   - bundle exec rake db:create RAILS_ENV=test
   - bundle exec rake db:migrate RAILS_ENV=test
+deploy:
+  provider: heroku
+  api_key:
+    secure: d2e7d770-f309-4392-a0c7-44f7367b9854
+  app: mathcraft-api
+  run:
+    - "rails db:create"
+    - "rails db:migrate"
+    - "rails db:seed"
