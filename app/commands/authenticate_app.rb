@@ -16,7 +16,7 @@ class AuthenticateApp
   attr_accessor :email, :password
 
   def user
-    user = RegisteredApps.find_by(email_address: email_address)
+    user = RegisteredApp.find_by(email_address: email)
     return user if user && user.authenticate(password)
     errors.add(:user_authentication, 'invalid email or password')
     nil
