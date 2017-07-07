@@ -31,7 +31,7 @@ RSpec.describe LevelsResource, type: :model do
   end
 
   describe 'validations' do
-    let(:resource) { Resource.create({ name: 'wood' }) }
+    let(:resource) { Resource.create({ name: 'wood', asset_link: "/path/to/asset" }) }
     let(:level) { Level.create({ assets: [ '/path/to/background', '/path/to/foreground' ],
                                  position: 1
                                 }) }
@@ -71,7 +71,7 @@ RSpec.describe LevelsResource, type: :model do
   end
 
   describe 'associations' do
-      let(:resource) { Resource.create({ name: 'wood' }) }
+      let(:resource) { Resource.create({ name: 'wood', asset_link: "/path/to/asset" }) }
       let(:level) { Level.create({ assets: [ '/path/to/background', '/path/to/foreground' ],
                                    position: 1
                                   }) }
