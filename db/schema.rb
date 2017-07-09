@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170707152839) do
+ActiveRecord::Schema.define(version: 20170709000051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20170707152839) do
 
   create_table "levels_resources", force: :cascade do |t|
     t.integer "rate"
-    t.integer "max_resources"
-    t.integer "min_resources"
+    t.integer "max_quantity"
+    t.integer "min_quantity"
     t.bigint "resource_id"
     t.bigint "level_id"
     t.datetime "created_at", null: false
