@@ -9,4 +9,9 @@ class Level < ApplicationRecord
                                          },
                          uniqueness: true
                        }
+
+
+  def generated_questions
+    self.cards.sample(20)
+  end
 end
