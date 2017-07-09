@@ -165,7 +165,7 @@ RSpec.describe Player, type: :model do
                                   })
 
           expect(player.resources.length).to eq 1
-          p player.serializable_hash(methods: [:buildings, :resources])
+          player.serializable_hash(methods: [:buildings, :resources])
         end
     end
   end
