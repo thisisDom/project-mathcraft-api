@@ -20,6 +20,10 @@ class PlayersController < ApplicationController
     end
   end
 
+  def delete
+    Player.find_by(id: params[:id]).destroy
+  end
+
   private
 
   def player_params
