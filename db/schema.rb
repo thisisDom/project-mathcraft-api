@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170709000051) do
+ActiveRecord::Schema.define(version: 20170709211515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20170709000051) do
     t.text "cards", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "experience", default: 0
+    t.integer "time_limit"
     t.index ["position"], name: "index_levels_on_position", unique: true
   end
 

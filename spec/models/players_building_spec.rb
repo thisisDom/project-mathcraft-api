@@ -56,7 +56,7 @@ RSpec.describe PlayersBuilding, type: :model do
                                         building_class: 'resource',
                                         building_level: 1,
                                       }) }
-    let(:playersbuilding) { PlayersBuilding.create({ player: player,
+    let(:playersbuilding) { PlayersBuilding.new({ player: player,
                                                      building: building,
                                                      location: [0,0]
                                                    }) }
@@ -69,5 +69,47 @@ RSpec.describe PlayersBuilding, type: :model do
       expect(playersbuilding.building).to be_a(Building)
     end
 
+  end
+
+  describe 'methods' do
+    let(:player) { Player.create({username: 'test',
+                                  email_address: 'test@test.com',
+                                  password: 'test',
+                                  experience: 0,
+                                  avatar_asset_link: '/path/to/avatar.jpg'}) }
+    let(:building) { Building.create({  asset_link: '/path/to/asset.jpg',
+                                        width: 1,
+                                        height: 1,
+                                        building_class: 'resource',
+                                        building_level: 1,
+                                      }) }
+    let(:resource) { Resource.create({ name: 'wood', asset_link: '/path/to/asset.jpg'})}
+    let(:players_building) { PlayersBuilding.new({ player: player,
+                                                     building: building,
+                                                     location: [0,0]
+                                                   }) }
+    context 'can check if a player has enough materials to build/upgrade a building' do
+      it 'returns true if player has enough materials' do
+        BuildingsResource.create({ building: building,
+                                   resource: resource,
+                                   quantity: 5
+                                  })
+        PlayersResource.create({ player: player, resource: resource, quantity: 10 })
+        expect(players_building.buildable?).to eq true
+      end
+      it 'returns false if the player does not have enough materials' do
+        BuildingsResource.create({ building: building,
+                                   resource: resource,
+                                   quantity: 5
+                                  })
+        PlayersResource.create({ player: player, resource: resource, quantity: 3 })
+        expect(players_building.buildable?).to eq false
+      end
+
+    end
+
+    context 'can build a building' do
+
+    end
   end
 end
