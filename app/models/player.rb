@@ -53,4 +53,9 @@ class Player < ApplicationRecord
     Experience.first.where("experience_needed >= ? ASC", self.experience).pluck(:level)
   end
 
+  def level_up(level_experience)
+    new_experience = self.experience + level_experience
+    self.update(experience: new_experience)
+  end
+
 end
