@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705180854) do
+ActiveRecord::Schema.define(version: 20170709211515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170705180854) do
     t.integer "building_level", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["asset_link"], name: "index_buildings_on_asset_link"
+    t.index ["asset_link"], name: "index_buildings_on_asset_link", unique: true
   end
 
   create_table "buildings_resources", force: :cascade do |t|
@@ -51,13 +51,15 @@ ActiveRecord::Schema.define(version: 20170705180854) do
     t.text "cards", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "experience", default: 0
+    t.integer "time_limit"
     t.index ["position"], name: "index_levels_on_position", unique: true
   end
 
   create_table "levels_resources", force: :cascade do |t|
     t.integer "rate"
-    t.integer "max_resources"
-    t.integer "min_resources"
+    t.integer "max_quantity"
+    t.integer "min_quantity"
     t.bigint "resource_id"
     t.bigint "level_id"
     t.datetime "created_at", null: false
@@ -122,6 +124,7 @@ ActiveRecord::Schema.define(version: 20170705180854) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "asset_link", null: false
     t.index ["name"], name: "index_resources_on_name", unique: true
   end
 

@@ -21,7 +21,7 @@ RSpec.describe PlayersResource, type: :model do
   end
 
   describe 'validations' do
-    let(:resource) { Resource.create({ name: 'wood' }) }
+    let(:resource) { Resource.create({ name: 'wood', asset_link: "/path/to/asset" }) }
     let(:player) { Player.create({ username: 'test',
                                    email_address: 'test@test.com',
                                    password: 'test',
@@ -38,7 +38,7 @@ RSpec.describe PlayersResource, type: :model do
     end
   end
   describe 'associations' do
-    let(:resource) { Resource.create({ name: 'wood' }) }
+    let(:resource) { Resource.create({ name: 'wood', asset_link: "/path/to/asset" }) }
     let(:player) { Player.create({username: 'test',
                                   email_address: 'test@test.com',
                                   password: 'test',
