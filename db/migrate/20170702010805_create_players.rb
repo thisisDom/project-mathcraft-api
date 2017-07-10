@@ -4,6 +4,7 @@ class CreatePlayers < ActiveRecord::Migration[5.1]
       t.string :username, null: false
       t.string :email_address, null: false
       t.string :password_digest, null: false
+      t.boolean :login_status, default: true
       t.string :avatar_asset_link
       t.integer :experience, null: false, default: 0
       t.timestamps

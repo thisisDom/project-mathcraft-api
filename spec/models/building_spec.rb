@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Building, building_class: :model do
+RSpec.describe Building, type: :model do
 
   describe 'attributes' do
     let(:building) { Building.new }
