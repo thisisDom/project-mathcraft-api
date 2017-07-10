@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#logout'
   # routes for the player model
   resources :players, only: [:index, :create, :show, :update, :delete]
-  
+
+  #route to get questions
+  get '/generate', to: 'questions#generate'
 end
