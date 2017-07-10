@@ -58,4 +58,16 @@ module QuestionsHelper
       return questions
   end
 
+  def instructions(params)
+    type = params[:type]
+    case type
+    when "addition"
+      return "Return the sum of the two numbers"
+    when "subtraction"
+      return "Subtract the second number from the first"
+    when "multiplication"
+      return "Return the product of the two numbers"
+    end
+  end
+
 end
