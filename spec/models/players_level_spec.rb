@@ -100,8 +100,10 @@ RSpec.describe PlayersLevel, type: :model do
                                                   correct_answers: 5
                                                 } ) }
 
-    it 'can get the time it took to complete a level' do
-      expect(level_attempt.time).to eq 30
+    context 'getting time for a level attempt' do
+      it 'can get the time it took to complete a level' do
+        expect(level_attempt.time).to eq 30
+      end
     end
 
     context 'adding resources' do
@@ -122,7 +124,7 @@ RSpec.describe PlayersLevel, type: :model do
         expect(PlayersResource.find_by(id: players_resource).quantity).to eq 5
       end
 
-      it 'can create an entry in the players_resources table if non exist' do
+      it 'can create an entry in the players_resources table if player does not have resource yet' do
 
         levels_resource = LevelsResource.create({ rate: 1,
                                                    max_quantity: 5,
@@ -132,6 +134,7 @@ RSpec.describe PlayersLevel, type: :model do
                                                  })
         level_attempt.add_resources
         expect(PlayersResource.where(player: player).first.quantity).to eq 5
+        level_attempt.correct_answers
       end
     end
   end
