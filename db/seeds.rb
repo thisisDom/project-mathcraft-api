@@ -10,7 +10,5 @@ RegisteredApp.create({email_address: 'project-mathcraft', password: 'fishsticks'
 
 max_level = 15
 while Experience.count < max_level
-  i = Experience.count
-  exp = i ** 3
-  Experience.create({ level: i, experience_needed: exp })
+  Experience.create({ level: Experience.count, experience_needed: Experience.count ** 3 })
 end
