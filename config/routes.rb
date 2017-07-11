@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # api token authentication
-  post '/authenticate', to: 'authorization#authenticate'
+  # post '/authenticate', to: 'authorization#authenticate'
   # login route to check login credentials
   post '/login', to: 'sessions#login'
   # logout route to change user login status to false
