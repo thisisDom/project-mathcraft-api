@@ -6,7 +6,6 @@ RSpec.describe AuthenticateApp, type: :command do
     user = RegisteredApp.create({email_address: email, password: password})
     command = AuthenticateApp.call(email, password)
     expect(command.success?).to eq true
-    p command.result
   end
 
   it 'returns an error if app is not authorized' do

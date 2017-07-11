@@ -10,13 +10,13 @@ RSpec.describe LevelsResource, type: :model do
     end
 
     it 'has a max resource gain' do
-      levelsresource.max_resources = 20
-      expect(levelsresource.max_resources).to eq 20
+      levelsresource.max_quantity = 20
+      expect(levelsresource.max_quantity).to eq 20
     end
 
     it 'has a mininum resources gain' do
-      levelsresource.min_resources = 5
-      expect(levelsresource.min_resources).to eq 5
+      levelsresource.min_quantity = 5
+      expect(levelsresource.min_quantity).to eq 5
     end
 
     it 'has a resource id' do
@@ -31,7 +31,7 @@ RSpec.describe LevelsResource, type: :model do
   end
 
   describe 'validations' do
-    let(:resource) { Resource.create({ name: 'wood' }) }
+    let(:resource) { Resource.create({ name: 'wood', asset_link: "/path/to/asset" }) }
     let(:level) { Level.create({ assets: [ '/path/to/background', '/path/to/foreground' ],
                                  position: 1
                                 }) }
@@ -39,8 +39,8 @@ RSpec.describe LevelsResource, type: :model do
     context 'rate' do
       it 'is greater than or equal to 0' do
         levelsresource = LevelsResource.create( { rate: -1,
-                                                  max_resources: 20,
-                                                  min_resources: 5,
+                                                  max_quantity: 20,
+                                                  min_quantity: 5,
                                                   resource: resource,
                                                   level: level } )
         expect(levelsresource.errors.full_messages.length).to eq 1
@@ -50,8 +50,8 @@ RSpec.describe LevelsResource, type: :model do
     context 'min resource' do
       it 'is greater than or equal to 0' do
         levelsresource = LevelsResource.create( { rate: 1,
-                                                  max_resources: 20,
-                                                  min_resources: -1,
+                                                  max_quantity: 20,
+                                                  min_quantity: -1,
                                                   resource: resource,
                                                   level: level } )
         expect(levelsresource.errors.full_messages.length).to eq 1
@@ -61,8 +61,8 @@ RSpec.describe LevelsResource, type: :model do
     context 'max resources' do
       it 'is greater than or equal to 0' do
         levelsresource = LevelsResource.create( { rate: 1,
-                                                  max_resources: -1,
-                                                  min_resources: 5,
+                                                  max_quantity: -1,
+                                                  min_quantity: 1,
                                                   resource: resource,
                                                   level: level } )
         expect(levelsresource.errors.full_messages.length).to eq 1
@@ -71,13 +71,13 @@ RSpec.describe LevelsResource, type: :model do
   end
 
   describe 'associations' do
-      let(:resource) { Resource.create({ name: 'wood' }) }
+      let(:resource) { Resource.create({ name: 'wood', asset_link: "/path/to/asset" }) }
       let(:level) { Level.create({ assets: [ '/path/to/background', '/path/to/foreground' ],
                                    position: 1
                                   }) }
       let(:levelsresource) { LevelsResource.create( { rate: 1,
-                                                      max_resources: -1,
-                                                      min_resources: 5,
+                                                      max_quantity: 5,
+                                                      min_quantity: 1,
                                                       resource: resource,
                                                       level: level } ) }
 

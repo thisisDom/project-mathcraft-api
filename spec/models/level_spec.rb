@@ -23,6 +23,10 @@ RSpec.describe Level, type: :model do
       expect(level.cards[0][0]).to be_a(String)
       expect(level.cards[0][1]).to be_a(String)
     end
+    it 'has experience' do
+      level.experience = 0
+      expect(level.experience).to eq 0
+    end
   end
 
   describe 'validations' do
@@ -36,21 +40,33 @@ RSpec.describe Level, type: :model do
     context 'position' do
       it 'has position greater than 0' do
         level = Level.create({ assets: [ '/path/to/background', '/path/to/foreground' ],
-                               position: 0
+                               position: 0,
+                               experience: 10
                               })
         expect(level.errors.full_messages.length).to eq 1
       end
 
       it 'is unique' do
         Level.create({ assets: [ '/path/to/background', '/path/to/foreground' ],
-                               position: 1
+                               position: 1,
+                               experience: 10
                               })
         level = Level.create({ assets: [ '/path/to/background', '/path/to/foreground' ],
-                               position: 1
+                               position: 1,
+                               experience: 10
                               })
         expect(level.errors.full_messages.length).to eq 1
       end
+    end
 
+    context 'experience' do
+      it 'has position greater than 0' do
+        level = Level.create({ assets: [ '/path/to/background', '/path/to/foreground' ],
+                               position: 1,
+                               experience: -1
+                              })
+        expect(level.errors.full_messages.length).to eq 1
+      end
     end
   end
 

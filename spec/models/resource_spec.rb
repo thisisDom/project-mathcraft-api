@@ -9,7 +9,7 @@ RSpec.describe Resource, type: :model do
         expect(resource.name).to eq 'wood'
     end
   end
-  
+
   describe 'validations' do
     context 'name' do
       it 'is present' do
@@ -18,8 +18,8 @@ RSpec.describe Resource, type: :model do
       end
 
       it 'is unique' do
-        Resource.create({name: 'wood'})
-        resource = Resource.create({name: 'wood'})
+        Resource.create({ name: 'wood', asset_link: "/path/to/asset" })
+        resource = Resource.create({ name: 'wood', asset_link: "/path/to/asset" })
         expect(resource.errors.full_messages.length).to eq 1
       end
     end
