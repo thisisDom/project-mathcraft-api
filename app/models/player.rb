@@ -50,7 +50,7 @@ class Player < ApplicationRecord
   end
 
   def level
-    Experience.first.where("experience_needed >= ? ASC", self.experience).pluck(:level)
+    Experience.select(:level).where("? >= experience_needed", self.experience).order("experience_needed DESC").first.level
   end
 
   def level_up(level_experience)
