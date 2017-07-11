@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   resources :buildings, only: [:index, :show]
   resources :resources, only: [:index, :show]
 
+  #route to get questions
+  get '/generate', to: 'questions#generate'
+
 end
