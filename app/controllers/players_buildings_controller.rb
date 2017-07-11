@@ -55,7 +55,7 @@ class PlayersBuildingsController
   end
 
   def check_ownership
-    if Playersbuildings.find_by(id: params[:id])g.player_id != params[:player_id]
+    if Playersbuildings.find_by(id: params[:id])g.player_id != params[:player_id])
       render json: { errors: 'Not Authorized' }
     end
   end
