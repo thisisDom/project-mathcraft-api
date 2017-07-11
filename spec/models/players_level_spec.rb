@@ -69,8 +69,8 @@ RSpec.describe PlayersLevel, type: :model do
     let(:level) { Level.create({ assets: [ '/path/to/background', '/path/to/foreground' ],
                                  position: 1
                                 }) }
-    let(:level_attempt) { PlayersLevel.create( {  time_started: DateTime.parse('2017-07-02 10:59'),
-                                                  time_completed: DateTime.parse('2017-07-02 11:00'),
+    let(:level_attempt) { PlayersLevel.create( {  time_started: DateTime.parse('2017-07-02 10:59').to_i,
+                                                  time_completed: DateTime.parse('2017-07-02 11:00').to_i,
                                                   player: player,
                                                   level: level } ) }
 
