@@ -45,7 +45,7 @@ class PlayersBuildingsController
 
   def destroy
     Playersbuildings.find_by(id: params[:id]).destroy
-    render json: { player: Player.find_by(id: params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
+    render json: {player: Player.find_by(id: params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
   end
 
   private
