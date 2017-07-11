@@ -4,7 +4,7 @@ class PlayersBuildingsController
 
   def index
     players_buildings = Playersbuildings.find_by(player_id: params[:player_id])
-    render json: { buildings: players_buildings.as_json}
+    render json: { buildings: players_buildings.as_json }
   end
 
   def create
@@ -27,10 +27,10 @@ class PlayersBuildingsController
       if players_building.save
         render json: { player: Player.find_by(id: params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
       else
-        render json { errors: players_building.errors.full_messages }
+        render json: { errors: players_building.errors.full_messages }
       end
     else
-      render json { errors: 'Not Enough Resources' }
+      render json: { errors: 'Not Enough Resources' }
     end
   end
 
@@ -55,7 +55,7 @@ class PlayersBuildingsController
   end
 
   def check_ownership
-    if Playersbuildings.find_by(id: params[:id])g.player_id != params[:player_id])
+    if Playersbuildings.find_by(id: params[:id]).player_id != params[:player_id])
       render json: { errors: 'Not Authorized' }
     end
   end
