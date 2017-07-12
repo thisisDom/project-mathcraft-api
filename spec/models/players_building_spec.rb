@@ -194,7 +194,6 @@ RSpec.describe PlayersBuilding, type: :model do
 
         expect(players_building.upgrade(new_building)).to eq false
         expect(players_building.building).to eq building
-        expect(PlayersResource.find_by(id: player_resource.id).quantity).to eq 0
       end
     end
   end
