@@ -1,4 +1,6 @@
 class Level < ApplicationRecord
+  serialize :assets, ActiveRecord::Coders::NestedHstore
+
   has_many :levels_resources
   has_many :resources, { through: :levels_resources }
 
@@ -17,6 +19,13 @@ class Level < ApplicationRecord
 
 
   def generated_questions
-    
+
   end
+
+  private
+
+  def set_default_values
+    self.assets ||= nil
+  end
+
 end
