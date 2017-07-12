@@ -35,6 +35,9 @@ gem 'jwt'
 # Used for creating service helper for API requests
 gem 'simple_command'
 
+# Used to add support for nested hstore in tables
+gem 'nested-hstore'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

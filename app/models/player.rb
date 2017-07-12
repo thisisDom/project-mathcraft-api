@@ -32,7 +32,7 @@ class Player < ApplicationRecord
   end
 
   def buildings
-    return [] if self.players_buildings.length == 0
+    return {} if self.players_buildings.length == 0
     self.players_buildings.map { |players_building|
        players_building.serializable_hash.merge(players_building.building.serializable_hash) { |key, oldval, newval|
          oldval
@@ -41,7 +41,7 @@ class Player < ApplicationRecord
   end
 
   def resources
-    return [] if self.players_resources.length == 0
+    return {} if self.players_resources.length == 0
     self.players_resources.map { |players_resource|
        players_resource.serializable_hash.merge(players_resource.resource.serializable_hash) { |key, oldval, newval|
          oldval
@@ -50,7 +50,7 @@ class Player < ApplicationRecord
   end
 
   def level
-    Experience.select(:level).where("? >= experience_needed", self.experience).order("experience_needed DESC").first
+    Experience.select(:level).where("? >= experience_needed", self.experience).order("experience_needed DESC").first.level
   end
 
   def level_up(level_experience)

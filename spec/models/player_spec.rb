@@ -30,6 +30,22 @@ RSpec.describe Player, type: :model do
         expect(player.avatar_asset_link).to eq '/path/to/asset/link.jpg'
       end
 
+      it 'has a level' do
+        max_level = 15
+        while Experience.count < max_level
+          Experience.create({ level: Experience.count, experience_needed: Experience.count ** 3 })
+        end
+        expect(player.level).to eq 0
+        player.experience = 4
+        expect(player.level).to eq 1
+        player.experience = 10
+        expect(player.level).to eq 2
+        player.experience = 27
+        expect(player.level).to eq 3
+        player.experience = 100
+        expect(player.level).to eq 4
+      end
+
     end
 
     context 'validations' do
@@ -167,6 +183,15 @@ RSpec.describe Player, type: :model do
           expect(player.resources.length).to eq 1
           player.serializable_hash(methods: [:buildings, :resources])
         end
+    end
+  end
+  describe 'methods' do
+    let(:player) { Player.new }
+    
+    it 'can level up a player' do
+      player.experience = 0
+      player.level_up(10)
+      expect(player.experience).to eq 10
     end
   end
 end

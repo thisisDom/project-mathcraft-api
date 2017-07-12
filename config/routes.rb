@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # logout route to change user login status to false
   post '/logout', to: 'sessions#logout'
   # routes for the player model
-  resources :players, only: [:index, :create, :show, :update, :delete] do
+  resources :players, except: [:new] do
     resources :playerslevels, only: [:index, :create, :update], path_names: { create: 'start', update: 'complete' }
     resources :playersbuildings, only: [:index, :create, :delete]
     resources :playersresources, only: [:index, :show]
