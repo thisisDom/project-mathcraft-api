@@ -8,13 +8,16 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#logout'
   # routes for the player model
   resources :players, except: [:new] do
-    resources :playerslevels, only: [:index, :create, :update], path_names: { create: 'start', update: 'complete' }
-    resources :playersbuildings, only: [:index, :create, :delete]
-    resources :playersresources, only: [:index, :show]
+    resources :playersbuildings, controller: 'players_buildings', only: [:index, :create, :delete]
+    resources :playersresources, controller: 'players_resources',only: [:index, :show]
   end
 
-  post '/players/:player_id/playersbuildings/:id/move', to: 'playersbuildings#move'
-  post '/players/:player_id/playersbuildings/:id/upgrade', to: 'playersbuildings#upgrade'
+  get '/players/:player_id/playerslevels', to: 'players_levels#index'
+  post '/players/:player_id/playerslevels', to: 'players_levels#start'
+  post '/players/:player_id/playerslevels/:id', to: 'players_levels#complete'
+
+  post '/players/:player_id/playersbuildings/:id/move', to: 'players_buildings#move'
+  post '/players/:player_id/playersbuildings/:id/upgrade', to: 'players_buildings#upgrade'
 
   resources :levels, only: [:index, :show]
   resources :buildings, only: [:index, :show]

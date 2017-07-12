@@ -42,7 +42,6 @@ RSpec.describe LevelsController, type: :controller do
                      level_type: 'boss_battle'
                     })
       get :index
-      p JSON.parse(response.body)['levels']
       expect(JSON.parse(response.body)['levels'].length).to eq 3
     end
   end
