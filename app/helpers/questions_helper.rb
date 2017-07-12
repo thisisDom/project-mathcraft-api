@@ -4,7 +4,7 @@ module QuestionsHelper
     operation = operation_setting(params[:type])
     difficulty_range = difficulty_setting(params[:difficulty])
     questions = []
-    20.times do
+    15.times do
         questions << create_question(operation, difficulty_range)
     end
     return questions
