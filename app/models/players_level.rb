@@ -13,7 +13,7 @@ class PlayersLevel < ApplicationRecord
     return false if self.level.levels_resources.length == 0
 
     self.level.levels_resources.each { |levels_resource|
-      player_resource = PlayersResource.where(player: self.player, resource_id: levels_resource.resource).first_or_create
+      player_resource = PlayersResource.where(player: self.player, resource: levels_resource.resource).first_or_create
       if level.time_limit
         resource_gain = levels_resource.rate * self.correct_answers
 
