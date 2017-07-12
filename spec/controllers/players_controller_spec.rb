@@ -42,7 +42,6 @@ RSpec.describe PlayersController, type: :controller do
       id = JSON.parse(response.body)["player"]["id"]
       post :show, params: { id: id }
       expect(response.body).to include("player")
-      p JSON.parse(response.body)
       expect(JSON.parse(response.body)["player"]["id"]).to eq id
     end
 
