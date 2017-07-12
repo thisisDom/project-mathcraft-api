@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-xRSpec.describe AuthorizationController, type: :controller do
+RSpec.xdescribe AuthorizationController, type: :controller do
   before(:all) do
     RegisteredApp.create({email_address: 'project-mathcraft', password: 'fishsticks'})
   end
