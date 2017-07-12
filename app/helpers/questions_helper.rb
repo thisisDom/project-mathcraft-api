@@ -1,11 +1,9 @@
 module QuestionsHelper
   def generate_questions(params)
-    p params
-    number = params[:number].to_i
     operation = operation_setting(params[:type])
     difficulty_range = difficulty_setting(params[:difficulty])
     questions = []
-    number.times do
+    20.times do
         questions << create_question(operation, difficulty_range)
     end
     return questions
