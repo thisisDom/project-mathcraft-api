@@ -1,6 +1,5 @@
 module QuestionsHelper
   def generate_questions(params)
-
     operation = operation_setting(params[:type])
     difficulty_range = difficulty_setting(params[:difficulty])
     questions = []
@@ -70,5 +69,6 @@ module QuestionsHelper
 
       return { problem: problem,
                answer: answer}
+
   end
 end
