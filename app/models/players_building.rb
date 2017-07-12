@@ -18,13 +18,24 @@ class PlayersBuilding < ApplicationRecord
 
   def build
     return false unless self.buildable?
-
+    return false unless self.valid?
     self.buildings_resources.each { |buildings_resource|
       players_resource = PlayersResource.find_by(player: self.player, resource: buildings_resource.resource)
       return false if !players_resource || players_resource.quantity < buildings_resource.quantity
       players_resource.update(quantity: players_resource.quantity - buildings_resource.quantity)
     }
+    self.save
     true
   end
 
+  def upgrade(new_building)
+    old_building = self.building
+    self.building = new_building
+    if !self.buildable? || !self.valid?
+      self.building = old_building
+      return false
+    else
+      self.build
+    end
+  end
 end

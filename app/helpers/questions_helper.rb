@@ -2,7 +2,7 @@ module QuestionsHelper
   def difficulty_setting(mode)
     case mode
     when "easy"
-        return (1..9)
+        return (2..9)
     when "medium"
         return (5..20)
     when "hard"
@@ -49,10 +49,11 @@ module QuestionsHelper
   end
 
   def generate_questions(params)
+      number = params[:number]
       operation = operation_setting(params[:type])
       difficulty_range = difficulty_setting(params[:difficulty])
       questions = []
-      20.times do
+      number.times do
           questions << create_question(operation, difficulty_range)
       end
       return questions

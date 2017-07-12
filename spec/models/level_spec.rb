@@ -6,9 +6,9 @@ RSpec.describe Level, type: :model do
     let(:level) { Level.new }
 
     it 'has level assets' do
-      level.assets = [ '/path/to/background', '/path/to/foreground' ]
+      level.assets = { "background" => '/path/to/background', "other" => '/path/to/foreground' }
       expect(level.assets.length).to be 2
-      expect(level.assets).to be_an(Array)
+      expect(level.assets).to be_an(Hash)
     end
 
     it 'has a position' do
@@ -16,13 +16,6 @@ RSpec.describe Level, type: :model do
       expect(level.position).to eq 1
     end
 
-    it 'has a card set' do
-      level.cards = [['4+5', '9']]
-      expect(level.cards).to be_a(Array)
-      expect(level.cards[0]).to be_a(Array)
-      expect(level.cards[0][0]).to be_a(String)
-      expect(level.cards[0][1]).to be_a(String)
-    end
     it 'has experience' do
       level.experience = 0
       expect(level.experience).to eq 0
@@ -33,7 +26,7 @@ RSpec.describe Level, type: :model do
     context 'assets' do
       it 'has assets' do
         level = Level.create( { position: 1 } )
-        expect(level.errors.full_messages.length).to eq 1
+        expect(level.errors.full_messages.length).to eq 0
       end
     end
 

@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170709211515) do
+ActiveRecord::Schema.define(version: 20170712164011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "buildings", force: :cascade do |t|
     t.string "asset_link", null: false
@@ -23,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170709211515) do
     t.integer "building_level", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["asset_link"], name: "index_buildings_on_asset_link", unique: true
   end
 
@@ -46,13 +48,15 @@ ActiveRecord::Schema.define(version: 20170709211515) do
   end
 
   create_table "levels", force: :cascade do |t|
-    t.string "assets", null: false, array: true
     t.integer "position", null: false
-    t.text "cards", array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "experience", default: 0
     t.integer "time_limit"
+    t.hstore "assets", default: {"boss"=>"", "minions"=>"[]", "phaser-background"=>"", "calculator-background"=>""}
+    t.string "title"
+    t.string "level_type"
+    t.integer "level_requirement"
     t.index ["position"], name: "index_levels_on_position", unique: true
   end
 
@@ -98,6 +102,7 @@ ActiveRecord::Schema.define(version: 20170709211515) do
     t.datetime "time_completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "correct_answers"
     t.index ["level_id"], name: "index_players_levels_on_level_id"
     t.index ["player_id"], name: "index_players_levels_on_player_id"
   end
