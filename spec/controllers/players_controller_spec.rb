@@ -1,7 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe PlayersController, type: :controller do
-
+  before(:all) do
+    max_level = 15
+    while Experience.count < max_level
+      Experience.create({ level: Experience.count, experience_needed: Experience.count ** 3 })
+    end
+  end
   context 'POST #create' do
     it 'responds with status code 201' do
       post :create, params: { player: { email_address: 'test', password: 'test', username: 'test', avatar_asset_link: 'test/test/test.test' } }
