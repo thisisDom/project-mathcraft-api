@@ -4,9 +4,9 @@ class PlayersController < ApplicationController
     player = Player.new(player_params)
     if player.save
       player.login
-      render json: { player: player.as_json }, status: :created
+      render json: { player: player.as_json }, status: 201
     else
-      render json: { errors: player.errors.full_messages }. status: 404
+      render json: { errors: player.errors.full_messages }, status: 406
     end
   end
 
@@ -15,7 +15,7 @@ class PlayersController < ApplicationController
     if player
       render json: { player: player.as_json(methods: [:buildings, :resources, :level]) }
     else
-      render json: { errors: player.errors.full_messages }
+      render json: { errors: 'Player Not Found' }, status: 404
     end
   end
 
