@@ -2,7 +2,7 @@ class PlayersLevel < ApplicationRecord
   belongs_to :player
   belongs_to :level
 
-  validates :time_started, :time_completed, { presence: true }
+  validates :time_started, { presence: true }
 
   def time
     self.time_completed.to_i - self.time_started.to_i
