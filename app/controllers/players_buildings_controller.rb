@@ -49,12 +49,7 @@ class PlayersBuildingsController < ApplicationController
     params.require(:data).permit(:player_id, :building_name, :location, :players_building_id)
   end
 
-  def check_ownership
-    id = players_building_params[:player_id]
-    if PlayersBuilding.find_by(id: players_building_params[:players_building_id]).player_id != id.to_i
-      render json: { errors: 'Not Authorized' }
-    end
-  end
+
 
   def check_existence
     player = Player.find_by(id: players_building_params[:player_id])

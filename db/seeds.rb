@@ -95,7 +95,7 @@ LevelsResource.create({ rate: 1,
                      })
 
 #Buildings Seed
-
+Building.create({name: 'alchemy-lab-1', asset_link: 'alchemy-lab-1.png', building_level: 1, building_class: "Alchemy Lab", offsetX: -80, offsetY: -10 })
 
 b1 = Building.create({name: 'alchemy-lab-1', asset_link: 'alchemy-lab-1.png', building_level: 1, building_class: "Alchemy Lab", offsetX: -80, offsetY: -10 })
 BuildingsResource.create({resource_id: r2.id, building_id: b1.id, quantity: 3})
