@@ -11,8 +11,6 @@ class PlayersBuilding < ApplicationRecord
   def buildable?
     self.buildings_resources.each { |buildings_resource|
       players_resource = PlayersResource.find_by(player: self.player, resource: buildings_resource.resource)
-      p buildings_resource
-      p players_resource
       return false if !players_resource || players_resource.quantity < buildings_resource.quantity
     }
     true
