@@ -89,13 +89,13 @@ RSpec.describe PlayersLevelsController, type: :controller do
     end
   end
 
-  context 'PATCH #complete' do
+  context 'POST #complete' do
     it 'responds with status 202' do
       player = Player.create({email_address: 'test', password: 'test', username: 'test', avatar_asset_link: 'test/test/test.test' })
       level = Level.first
       post :start,  params: { data: { level_id: level.id, player_id: player.id} }
       level_id  = JSON.parse(response.body)["player_level"]["id"]
-      post :complete,  params: { id: level_id, data: { player_id: player.id, correct_answers: 10 } }
+      post :complete,  params: { data: { player_id: player.id, players_level_id: level_id, correct_answers: 10 } }
       expect(response.status).to eq 202
     end
 
@@ -104,7 +104,7 @@ RSpec.describe PlayersLevelsController, type: :controller do
       level = Level.first
       post :start,  params: { data: { level_id: level.id, player_id: player.id} }
       level_id  = JSON.parse(response.body)["player_level"]["id"]
-      post :complete,  params: { id: level_id, data: { player_id: player.id, correct_answers: 10 } }
+      post :complete,  params: { data: { player_id: player.id, players_level_id: level_id, correct_answers: 10 } }
       expect(JSON.parse(response.body)).to include("player")
     end
 
