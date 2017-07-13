@@ -14,9 +14,9 @@ Rails.application.routes.draw do
   resources :playersbuildings, controller: 'players_buildings', only: [:index, :create, :delete]
   post '/playersbuildings/:id/move', to: 'players_buildings#move'
   post '/playersbuildings/:id/upgrade', to: 'players_buildings#upgrade'
-  
-  post '/playerslevels', to: 'players_levels#start'
-  post '/playerslevels/:id', to: 'players_levels#complete'
+
+  post '/playerslevels/start', to: 'players_levels#start'
+  post '/playerslevels/complete', to: 'players_levels#complete'
 
 
   resources :levels, only: [:index, :show]
