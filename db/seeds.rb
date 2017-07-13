@@ -85,33 +85,33 @@ LevelsResource.create({ rate: 1,
 
 #Buildings Seed
 b1 = Building.create({name: 'alchemy-lab-1', asset_link: 'alchemy-lab-1.png', building_level: 1, building_class: "Alchemy Lab", offsetX: -80, offsetY: -10 })
-BuildingsResource.create({resource_id: 2, building: 1, quantity: 3})
+BuildingsResource.create({resource_id: 2, building_id: 1, quantity: 3})
 
 b2 = Building.create({name: 'alchemy-lab-2', asset_link: 'alchemy-lab-2.png', building_level: 2, building_class: "Alchemy Lab", offsetX: -120, offsetY: -30 })
-BuildingsResource.create({resource_id: 2, building: 2, quantity: 5})
+BuildingsResource.create({resource_id: 2, building_id: 2, quantity: 5})
 
 b3 = Building.create({name: 'alchemy-lab-3', asset_link: 'alchemy-lab-3.png', building_level: 3, building_class: "Alchemy Lab", offsetX: -150, offsetY: -60})
-BuildingsResource.create({resource_id: 2, building: 3, quantity: 10})
+BuildingsResource.create({resource_id: 2, building_id: 3, quantity: 10})
 
 b4 = Building.create({name: 'tesla-factory-1', asset_link: 'tesla-factory-1.png', building_level: 1, building_class: "Tesla Factory", offsetX: -90, offsetY: 0 })
-BuildingsResource.create({resource_id: 1, building: 4, quantity: 5})
+BuildingsResource.create({resource_id: 1, building_id: 4, quantity: 5})
 
 b5 = Building.create({name: 'tesla-factory-2', asset_link: 'tesla-factory-2.png', building_level: 2, building_class: "Tesla Factory", offsetX: -140, offsetY: -60 })
-BuildingsResource.create({resource_id: 1, building: 5, quantity: 5})
+BuildingsResource.create({resource_id: 1, building_id: 5, quantity: 5})
 
 b6 = Building.create({name: 'tesla-factory-3', asset_link: 'tesla-factory-3.png', building_level: 3, building_class: "Tesla Factory", offsetX: -160, offsetY: -70})
-BuildingsResource.create({resource_id: 1, building: 6, quantity: 10})
+BuildingsResource.create({resource_id: 1, building_id: 6, quantity: 10})
 
 b7 = Building.create({name: 'magic-house-1', asset_link: 'magic-house-1.png', building_level: 1, building_class: "Magic House", offsetX: -90, offsetY: -10 })
 
-BuildingsResource.create({resource_id: 3, building: 7, quantity: 2})
+BuildingsResource.create({resource_id: 3, building_id: 7, quantity: 2})
 
 b8 = Building.create({name: 'magic-house-2', asset_link: 'magic-house-2.png', building_level: 2, building_class: "Magic House", offsetX: -90, offsetY: -20 })
 
-BuildingsResource.create({resource_id: 3, building: 8, quantity: 5})
+BuildingsResource.create({resource_id: 3, building_id: 8, quantity: 5})
 
 b9 = Building.create({name: 'magic-house-3', asset_link: 'magic-house-3.png', building_level: 3, building_class: "Magic House", offsetX: -90, offsetY: -20})
-BuildingsResource.create({resource_id: 3, building: 9, quantity: 10})
+BuildingsResource.create({resource_id: 3, building_id: 9, quantity: 10})
 
 
 player = Player.create({username: "Jasper", email_address: 'test', password: 'test', avatar_asset_link: 'test' })
