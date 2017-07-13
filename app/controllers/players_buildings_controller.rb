@@ -1,19 +1,20 @@
 class PlayersBuildingsController < ApplicationController
-  before_action :check_ownership, except: :index
-  before_action :check_existence, only: [:upgrate, :move, :delete]
+  before_action :check_ownership, except: [:index, :create]
+  before_action :check_existence, only: [:upgrade, :move, :delete]
 
   def index
-    if Player.find_by(players_building_param[:player_id])
-      players_buildings = Playersbuilding.where(player_id: params[:player_id])
-      render json: { buildings: players_buildings.as_json }
+    if Player.find_by(id: players_building_params[:player_id])
+      players_buildings = PlayersBuilding.where(player_id: players_building_params[:player_id])
+      render json: { buildings: players_buildings.as_json }, status: 200
     end
   end
 
   def create
-    players_building = Playersbuilding.new(player: params[:player_id], building_id: building_params[:building_id], position: building_params[:position])
+    players_building = PlayersBuilding.new(player_id: players_building_params[:player_id], building_id: players_building_params[:building_id], location: players_building_params[:location])
     if players_building.build
       if players_building.save
-        render json: { player: player.as_json(methods: [:buildings, :resources, :level]) }
+        player = Player.find_by(id: players_building.player.id)
+        render json: { player: player.as_json(methods: [:level, :buildings, :resources]) }
       else
         render json: { errors: players_building.errors.full_messages }
       end
@@ -23,11 +24,11 @@ class PlayersBuildingsController < ApplicationController
   end
 
   def upgrade
-    players_building = Playersbuilding.find_by(id: params[:id])
-    players_building.building = Building.find_by(id: building_params[:building_id])
+    players_building = PlayersBuilding.find_by(id: players_building_params[:players_building_id])
+    players_building.building = Building.find_by(id: players_building_params[:building_id])
     if players_building.build
       if players_building.save
-        render json: { player: Player.find_by(id: params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
+        render json: { player: Player.find_by(id: players_building_params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
       else
         render json: { errors: players_building.errors.full_messages }
       end
@@ -37,36 +38,37 @@ class PlayersBuildingsController < ApplicationController
   end
 
   def move
-    players_building = Playersbuildings.find_by(id: params[:id])
-    if players_building.update(position: building_params[:position])
-      render json: { player: Player.find_by(id: params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
+    players_building = PlayersBuildings.find_by(id: players_building_params[:players_building_id])
+    if players_building.update(location: players_building_params[:location])
+      render json: { player: Player.find_by(id: players_building_params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
     else
       render json: { errors: players_building.errors.full_messages }
     end
   end
 
   def destroy
-    Playersbuilding.find_by(id: params[:id]).destroy
-    render json: {player: Player.find_by(id: params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
+    PlayersBuilding.find_by(id: players_building_params[:players_building_id]).destroy
+    render json: {player: Player.find_by(id: players_building_params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
   end
 
   private
 
   def players_building_params
-    params.require(:data).permit(:player_id, :building_id, :position)
+    params.require(:data).permit(:player_id, :building_id, :location, :players_building_id)
   end
 
   def check_ownership
-    if Playersbuilding.find_by(id: params[:id]).player_id != building_params[:player_id]
+    id = players_building_params[:player_id]
+    if PlayersBuilding.find_by(id: players_building_params[:players_building_id]).player_id != id.to_i
       render json: { errors: 'Not Authorized' }
     end
   end
 
   def check_existence
-    player = Player.find_by(id: params[:player_id])
-    building = Building.find_by(id: building_params[:building_id])
+    player = Player.find_by(id: players_building_params[:player_id])
+    building = Building.find_by(id: players_building_params[:building_id])
     if !player || !building
-      render json: { errors: { player: player.errors.full_messages, building: building.errors.full_messages } }
+      render json: { errors: 'Invalid Player or Building' }
     end
   end
 
