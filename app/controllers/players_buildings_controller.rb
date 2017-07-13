@@ -4,8 +4,9 @@ class PlayersBuildingsController < ApplicationController
 
   def index
     if Player.find_by(players_building_param[:player_id])
-    players_buildings = Playersbuilding.where(player_id: params[:player_id])
-    render json: { buildings: players_buildings.as_json }
+      players_buildings = Playersbuilding.where(player_id: params[:player_id])
+      render json: { buildings: players_buildings.as_json }
+    end
   end
 
   def create
