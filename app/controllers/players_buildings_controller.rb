@@ -25,7 +25,7 @@ class PlayersBuildingsController < ApplicationController
   end
 
   def upgrade
-    players_building = PlayersBuilding.find_by(id: players_building_params[:players_building_id])
+    players_building = PlayersBuilding.find_by(player_id: players_building_params[:player_id], location: players_building_params[:location])
     players_building.building = Building.find_by(name: players_building_params[:building_name])
     if players_building.build
       if players_building.save
