@@ -1,4 +1,28 @@
 module QuestionsHelper
+  def generate_questions(params)
+    operation = operation_setting(params[:type])
+    difficulty_range = difficulty_setting(params[:difficulty])
+    questions = []
+    15.times do
+        questions << create_question(operation, difficulty_range)
+    end
+    return questions
+  end
+
+  def instructions(params)
+    type = params[:type]
+    case type
+    when "addition"
+      return "Return the sum of the two numbers"
+    when "subtraction"
+      return "Subtract the second number from the first"
+    when "multiplication"
+      return "Return the product of the two numbers"
+    end
+  end
+
+  private
+
   def difficulty_setting(mode)
     case mode
     when "easy"
@@ -6,7 +30,7 @@ module QuestionsHelper
     when "medium"
         return (5..20)
     when "hard"
-        return (10..30)
+        return (11..30)
     end
   end
 
@@ -47,28 +71,4 @@ module QuestionsHelper
                answer: answer}
 
   end
-
-  def generate_questions(params)
-      number = params[:number]
-      operation = operation_setting(params[:type])
-      difficulty_range = difficulty_setting(params[:difficulty])
-      questions = []
-      number.times do
-          questions << create_question(operation, difficulty_range)
-      end
-      return questions
-  end
-
-  def instructions(params)
-    type = params[:type]
-    case type
-    when "addition"
-      return "Return the sum of the two numbers"
-    when "subtraction"
-      return "Subtract the second number from the first"
-    when "multiplication"
-      return "Return the product of the two numbers"
-    end
-  end
-
 end
