@@ -10,7 +10,8 @@ class PlayersBuildingsController < ApplicationController
   end
 
   def create
-    players_building = PlayersBuilding.new(player_id: players_building_params[:player_id], building_id: players_building_params[:building_id], location: players_building_params[:location])
+    building = Building.find_by(name: players_building_params[:building_name])
+    players_building = PlayersBuilding.new(player_id: players_building_params[:player_id], building: building , location: players_building_params[:location])
     if players_building.build
       if players_building.save
         player = Player.find_by(id: players_building.player.id)
@@ -25,7 +26,7 @@ class PlayersBuildingsController < ApplicationController
 
   def upgrade
     players_building = PlayersBuilding.find_by(id: players_building_params[:players_building_id])
-    players_building.building = Building.find_by(id: players_building_params[:building_id])
+    players_building.building = Building.find_by(name: players_building_params[:building_name])
     if players_building.build
       if players_building.save
         render json: { player: Player.find_by(id: players_building_params[:player_id]).as_json(methods: [:level, :buildings, :resources]) }
@@ -45,7 +46,7 @@ class PlayersBuildingsController < ApplicationController
   private
 
   def players_building_params
-    params.require(:data).permit(:player_id, :building_id, :location, :players_building_id)
+    params.require(:data).permit(:player_id, :building_name, :location, :players_building_id)
   end
 
   def check_ownership
@@ -57,7 +58,7 @@ class PlayersBuildingsController < ApplicationController
 
   def check_existence
     player = Player.find_by(id: players_building_params[:player_id])
-    building = Building.find_by(id: players_building_params[:building_id])
+    building = Building.find_by(name: players_building_params[:building_name])
     if !player || !building
       render json: { errors: 'Invalid Player or Building' }
     end

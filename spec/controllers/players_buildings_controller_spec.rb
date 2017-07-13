@@ -28,23 +28,23 @@ RSpec.describe PlayersBuildingsController, type: :controller do
 
   context 'POST #create' do
     it 'responds with status 200' do
-      post :create, params: { data: { player_id: Player.first.id, building_id: Building.first.id, location: 4 }}
+      post :create, params: { data: { player_id: Player.first.id, building_name: Building.first.name, location: 4 }}
       expect(response.status).to eq 200
     end
 
     it 'responds with a player' do
-      post :create, params: { data: { player_id: Player.first.id, building_id: Building.first.id, location: 4 }}
+      post :create, params: { data: { player_id: Player.first.id, building_name: Building.first.name, location: 4 }}
       expect(JSON.parse(response.body)).to include('player')
     end
 
     it 'changes the players resource quantoty' do
-      post :create, params: { data: { player_id: Player.first.id, building_id: Building.first.id, location: 4 }}
+      post :create, params: { data: { player_id: Player.first.id, building_name: Building.first.name, location: 4 }}
       expect(JSON.parse(response.body)['player']['resources'][0]['quantity']).to eq 15
     end
 
     it 'responds with an error if not enough resources' do
       id = Player.first.players_resources.destroy_all
-      post :create, params: { data: { player_id: Player.first.id, building_id: Building.first.id, location: 4 }}
+      post :create, params: { data: { player_id: Player.first.id, building_name: Building.first.name, location: 4 }}
       expect(JSON.parse(response.body)).to include('errors')
     end
 
@@ -52,30 +52,30 @@ RSpec.describe PlayersBuildingsController, type: :controller do
 
   context 'POST upgrade' do
     it 'responds with status 200' do
-      post :create, params: { data: { player_id: Player.first.id, building_id: Building.first.id, location: 4 }}
+      post :create, params: { data: { player_id: Player.first.id, building_name: Building.first.name, location: 4 }}
       id = Player.first.players_buildings[0].id
       b1 = Building.create({name: 'alchemy-lab-2', asset_link: 'alchemy-lab-2.png', building_level: 2, building_class: "Alchemy Lab", offsetX: -80, offsetY: -10 })
       BuildingsResource.create({resource_id: 2, building_id: b1.id, quantity: 1})
-      post :upgrade, params: { data: { player_id: Player.first.id, building_id: b1.id, players_building_id: id }}
+      post :upgrade, params: { data: { player_id: Player.first.id, building_name: b1.id, players_building_id: id }}
       expect(response.status).to eq 200
     end
 
     it 'responds with a player' do
-      post :create, params: { data: { player_id: Player.first.id, building_id: Building.first.id, location: 4 }}
+      post :create, params: { data: { player_id: Player.first.id, building_name: Building.first.name, location: 4 }}
       id = Player.first.players_buildings[0].id
       b1 = Building.create({name: 'alchemy-lab-3', asset_link: 'alchemy-lab-3.png', building_level: 2, building_class: "Alchemy Lab", offsetX: -80, offsetY: -10 })
-      BuildingsResource.create({resource_id: 1, building_id: b1.id, quantity: 1})
-      post :upgrade, params: { data: { player_id: Player.first.id, building_id: b1.id, players_building_id: id }}
+      BuildingsResource.create({resource_id: Resource.first.id, building_id: b1.id, quantity: 1})
+      post :upgrade, params: { data: { player_id: Player.first.id, building_name: b1.name, players_building_id: id }}
       expect(JSON.parse(response.body)).to include('player')
     end
 
     it 'responds with an error if not enough resources' do
-      post :create, params: { data: { player_id: Player.first.id, building_id: Building.first.id, location: 4 }}
+      post :create, params: { data: { player_id: Player.first.id, building_name: Building.first.name, location: 4 }}
       id = Player.first.players_buildings[0].id
       b1 = Building.create({name: 'alchemy-lab-3', asset_link: 'alchemy-lab-3.png', building_level: 2, building_class: "Alchemy Lab", offsetX: -80, offsetY: -10 })
         BuildingsResource.destroy_all
       BuildingsResource.create({resource_id: Resource.first.id, building_id: b1.id, quantity: 300})
-      post :upgrade, params: { data: { player_id: Player.first.id, building_id: b1.id, players_building_id: id }}
+      post :upgrade, params: { data: { player_id: Player.first.id, building_name: b1.id, players_building_id: id }}
       expect(JSON.parse(response.body)).to include('errors')
     end
   end
