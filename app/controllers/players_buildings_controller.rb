@@ -3,7 +3,8 @@ class PlayersBuildingsController < ApplicationController
   before_action :check_existence, only: [:upgrate, :move, :delete]
 
   def index
-    players_buildings = Playersbuilding.find_by(player_id: params[:player_id])
+    if Player.find_by(players_building_param[:player_id])
+    players_buildings = Playersbuilding.where(player_id: params[:player_id])
     render json: { buildings: players_buildings.as_json }
   end
 
@@ -50,8 +51,8 @@ class PlayersBuildingsController < ApplicationController
 
   private
 
-  def building_params
-    params.require(:data).require(:building).permit(:building_id, :position)
+  def players_building_params
+    params.require(:data).permit(:player_id, :building_id, :position)
   end
 
   def check_ownership
