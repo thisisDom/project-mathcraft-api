@@ -10,14 +10,14 @@ RSpec.describe Building, type: :model do
       expect(building.asset_link).to eq "/path/to/asset"
     end
 
-    it 'has a width' do
-      building.width = 2
-      expect(building.width).to eq 2
+    it 'has a offsetX' do
+      building.offsetX = 2
+      expect(building.offsetX).to eq 2
     end
 
-    it 'has a height' do
-      building.height = 2
-      expect(building.height).to eq 2
+    it 'has a offsetY' do
+      building.offsetY = 2
+      expect(building.offsetY).to eq 2
 
     end
 
@@ -36,8 +36,8 @@ RSpec.describe Building, type: :model do
   describe 'validations' do
     context 'asset_link' do
       it 'has an asset link' do
-        building = Building.create({  width: 1,
-                                      height: 2,
+        building = Building.create({  offsetX: 1,
+                                      offsetY: 2,
                                       building_class: 'resource',
                                       building_level: 1,
                                     })
@@ -46,15 +46,15 @@ RSpec.describe Building, type: :model do
 
       it 'has a unique asset link' do
         Building.create({ asset_link: "/path/to/asset",
-                          width: 1,
-                          height: 2,
+                          offsetX: 1,
+                          offsetY: 2,
                           building_class: 'resource',
                           building_level: 1,
                         })
 
         building = Building.create({  asset_link: "/path/to/asset",
-                                      width: 1,
-                                      height: 2,
+                                      offsetX: 1,
+                                      offsetY: 2,
                                       building_class: 'resource',
                                       building_level: 1,
                                     })
@@ -62,28 +62,27 @@ RSpec.describe Building, type: :model do
       end
     end
 
-    context 'width' do
-      it 'has a width greater than 0' do
+    context 'offsetX' do
+      it 'has an offsetX ' do
         building = Building.create({  asset_link: "/path/to/asset",
-                                      width: 0,
-                                      height: 2,
+                                      offsetY: 2,
                                       building_class: 'resource',
                                       building_level: 1,
                                     })
-        expect(building.errors.full_messages.length).to eq 1
+
+        expect(building.errors.full_messages.length).to eq 2
       end
 
     end
 
-    context 'height' do
-      it 'has a height greater than 0' do
+    context 'offsetY' do
+      it 'has an offsetY ' do
         building = Building.create({  asset_link: "/path/to/asset",
-                                      width: 1,
-                                      height: 0,
+                                      offsetY: 1,
                                       building_class: 'resource',
                                       building_level: 1,
                                     })
-        expect(building.errors.full_messages.length).to eq 1
+        expect(building.errors.full_messages.length).to eq 2
       end
 
     end
@@ -91,8 +90,8 @@ RSpec.describe Building, type: :model do
     context 'building_class' do
       it 'has a building_class' do
         building = Building.create({  asset_link: "/path/to/asset",
-                                      width: 1,
-                                      height: 1,
+                                      offsetX: 1,
+                                      offsetY: 1,
                                       building_level: 1,
                                     })
         expect(building.errors.full_messages.length).to eq 1
@@ -103,8 +102,8 @@ RSpec.describe Building, type: :model do
     context 'buidling level' do
       it 'has a level greater than 0' do
         building = Building.create({  asset_link: "/path/to/asset",
-                                      width: 1,
-                                      height: 1,
+                                      offsetX: 1,
+                                      offsetY: 1,
                                       building_class: 'resource',
                                       building_level: 0,
                                     })

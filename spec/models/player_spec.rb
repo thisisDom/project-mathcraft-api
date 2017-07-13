@@ -150,15 +150,15 @@ RSpec.describe Player, type: :model do
                                 })
 
         building = Building.create({ asset_link: "/path/to/asset",
-                                     width: 1,
-                                     height: 1,
+                                     offsetX: 1,
+                                     offsetY: 1,
                                      building_class: 'resource',
                                      building_level: 1,
                                     })
 
         PlayersBuilding.create({ player: player,
                                  building: building,
-                                 location: [2,2]
+                                 location: 1
                                })
 
         expect(player.buildings.length).to eq 1
@@ -187,7 +187,7 @@ RSpec.describe Player, type: :model do
   end
   describe 'methods' do
     let(:player) { Player.new }
-    
+
     it 'can level up a player' do
       player.experience = 0
       player.level_up(10)

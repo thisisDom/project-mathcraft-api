@@ -5,8 +5,8 @@ RSpec.describe PlayersBuilding, type: :model do
     let(:playerbuilding) { PlayersBuilding.new }
 
     it 'has a location' do
-      playerbuilding.location = ["0","0"]
-      expect(playerbuilding.location).to eq ["0","0"]
+      playerbuilding.location = 2
+      expect(playerbuilding.location).to eq 2
     end
 
     it 'has a building id' do
@@ -28,8 +28,8 @@ RSpec.describe PlayersBuilding, type: :model do
                                     experience: 0,
                                     avatar_asset_link: '/path/to/asset/link.jpg'}) }
       let(:building) { Building.create({  asset_link: "/path/to/asset",
-                                          width: 1,
-                                          height: 1,
+                                          offsetX: 1,
+                                          offsetY: 1,
                                           building_class: 'resource',
                                           building_level: 1,
                                         }) }
@@ -44,11 +44,11 @@ RSpec.describe PlayersBuilding, type: :model do
       it 'is unique' do
         PlayersBuilding.create({ player: player,
                                  building: building,
-                                 location: [0,0]
+                                 location: 1
                                })
         playersbuilding = PlayersBuilding.create({ player: player,
                                                    building: building,
-                                                   location: [0,0]
+                                                   location: 1
                                                  })
         expect(playersbuilding.errors.full_messages.length).to eq 1
       end
@@ -62,8 +62,8 @@ RSpec.describe PlayersBuilding, type: :model do
                                   experience: 0,
                                   avatar_asset_link: '/path/to/asset/link.jpg'}) }
     let(:building) { Building.create({  asset_link: "/path/to/asset",
-                                        width: 1,
-                                        height: 1,
+                                        offsetX: 1,
+                                        offsetY: 1,
                                         building_class: 'resource',
                                         building_level: 1,
                                       }) }
@@ -89,16 +89,16 @@ RSpec.describe PlayersBuilding, type: :model do
                                   experience: 0,
                                   avatar_asset_link: '/path/to/avatar.jpg'}) }
     let(:building) { Building.create({  asset_link: '/path/to/asset.jpg',
-                                        width: 1,
-                                        height: 1,
+                                        offsetX: 1,
+                                        offsetY: 1,
                                         building_class: 'resource',
                                         building_level: 1,
                                       }) }
     let(:resource) { Resource.create({ name: 'wood', asset_link: '/path/to/asset.jpg'})}
     let(:players_building) { PlayersBuilding.new({ player: player,
-                                                     building: building,
-                                                     location: [0,0]
-                                                   }) }
+                                                   building: building,
+                                                   location: 1
+                                                 }) }
     context 'can check if a player has enough materials to build/upgrade a building' do
       it 'returns true if player has enough materials' do
         BuildingsResource.create({ building: building,
@@ -152,8 +152,8 @@ RSpec.describe PlayersBuilding, type: :model do
         expect(players_building.building).to eq building
 
         new_building = Building.create({  asset_link: '/path/to/asset.jpg',
-                                          width: 1,
-                                          height: 1,
+                                          offsetX: 1,
+                                          offsetY: 1,
                                           building_class: 'resource',
                                           building_level: 1
                                         })
@@ -180,8 +180,8 @@ RSpec.describe PlayersBuilding, type: :model do
         expect(players_building.build).to eq true
 
         new_building = Building.create({  asset_link: '/path/to/asset.jpg',
-                                          width: 1,
-                                          height: 1,
+                                          offsetX: 1,
+                                          offsetY: 1,
                                           building_class: 'resource',
                                           building_level: 1
                                         })

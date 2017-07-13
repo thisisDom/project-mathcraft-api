@@ -22,8 +22,8 @@ RSpec.describe BuildingsResource, type: :model do
   describe 'validations' do
     let(:resource) { Resource.create({ name: 'wood', asset_link: "/path/to/asset" }) }
     let(:building) { Building.create({  asset_link: "/path/to/asset",
-                                        width: 1,
-                                        height: 1,
+                                        offsetX: 1,
+                                        offsetY: 1,
                                         building_class: 'resource',
                                         building_level: 1,
                                       }) }
@@ -40,8 +40,8 @@ RSpec.describe BuildingsResource, type: :model do
   describe 'associations' do
     let(:resource) { Resource.create({ name: 'wood', asset_link: "/path/to/asset" }) }
     let(:building) { Building.create({  asset_link: "/path/to/asset",
-                                        width: 1,
-                                        height: 1,
+                                        offsetX: 1,
+                                        offsetY: 1,
                                         building_class: 'resource',
                                         building_level: 1,
                                       }) }
