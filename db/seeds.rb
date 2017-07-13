@@ -76,26 +76,26 @@ r3 = Resource.create(name: "gold", asset_link: 'gold.png')
 LevelsResource.create({ rate: 1,
                         max_quantity: 100,
                         min_quantity: 0,
-                        resource_id: 1,
-                        level_id: 1
+                        resource_id: r1,
+                        level_id: l1
                        })
 
 LevelsResource.create({ rate: 1,
                        max_quantity: 100,
                        min_quantity: 0,
-                       resource_id: 2,
-                       level_id: 2
+                       resource_id: r2,
+                       level_id: l2
                       })
 
 LevelsResource.create({ rate: 1,
                       max_quantity: 100,
                       min_quantity: 0,
-                      resource_id: 3,
-                      level_id: 3
+                      resource_id: r3,
+                      level_id: l3
                      })
 
 #Buildings Seed
-Building.create({name: 'alchemy-lab-1', asset_link: 'alchemy-lab-1.png', building_level: 1, building_class: "Alchemy Lab", offsetX: -80, offsetY: -10 })
+Building.create({name: 'center-fountain', asset_link: 'center-fountain.png', building_level: 1, building_class: "center-fountain", offsetX: -110, offsetY: -25 })
 
 b1 = Building.create({name: 'alchemy-lab-1', asset_link: 'alchemy-lab-1.png', building_level: 1, building_class: "Alchemy Lab", offsetX: -80, offsetY: -10 })
 BuildingsResource.create({resource_id: r2.id, building_id: b1.id, quantity: 3})
