@@ -47,16 +47,6 @@ RSpec.describe PlayersLevel, type: :model do
         expect(level_attempt.errors.full_messages.length).to eq 1
       end
     end
-
-    context 'time completed' do
-      it 'is present' do
-        time_started =  DateTime.parse('2017-07-02 11:00')
-        level_attempt = PlayersLevel.create( {  time_started: time_started,
-                                                player: player,
-                                                level: level } )
-        expect(level_attempt.errors.full_messages.length).to eq 1
-      end
-    end
   end
 
   describe 'associations' do

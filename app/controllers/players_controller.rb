@@ -13,7 +13,7 @@ class PlayersController < ApplicationController
   def show
     player = Player.find_by(id: params[:id])
     if player
-      render json: { player: player.as_json(methods: [:buildings, :resources, :level]) }
+      render json: { player: player.as_json(methods: [:level, :buildings, :resources]) }
     else
       render json: { errors: 'Player Not Found' }, status: 404
     end
