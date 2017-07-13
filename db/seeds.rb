@@ -18,9 +18,9 @@ Level.destroy_all
 Resource.destroy_all
 Player.destroy_all
 Building.destroy_all
-LevelsResources.destroy_all
-PlayersResources.destroy_all
-BuildingsResources.destroy_all
+LevelsResource.destroy_all
+PlayersResource.destroy_all
+BuildingsResource.destroy_all
 
 
 
