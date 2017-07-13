@@ -12,7 +12,16 @@ RegisteredApp.create({email_address: 'project-mathcraft', password: 'fishsticks'
 max_level = 15
 while Experience.count < max_level
   Experience.create({ level: Experience.count, experience_needed: Experience.count ** 3 })
-end
+PlayersLevels.destroy_all
+Level.destoy_all
+Resource.destoy_all
+Player.destoy_all
+Building.destoy_all
+LevelsResources.destoy_all
+PlayersResources.destoy_all
+BuildingsResources.destoy_all
+
+
 
 #create levels\
 max_count = 3
