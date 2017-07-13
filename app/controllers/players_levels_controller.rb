@@ -16,7 +16,7 @@ class PlayersLevelsController < ApplicationController
   end
 
   def complete
-    players_level = PlayersLevel.find_by(id: params[:id])
+    players_level = PlayersLevel.find_by(id: players_level_params[:players_level_id])
     if players_level
       if players_level.player_id == players_level_params[:player_id].to_i
         players_level.update({time_completed: Time.current, correct_answers: players_level_params[:correct_answers]})
@@ -34,7 +34,7 @@ class PlayersLevelsController < ApplicationController
   private
 
   def players_level_params
-    params.require(:data).permit(:level_id, :player_id, :correct_answers)
+    params.require(:data).permit(:level_id, :players_level_id, :player_id, :correct_answers)
   end
 
 end
