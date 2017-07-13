@@ -18,14 +18,14 @@ class PlayersLevelsController < ApplicationController
   def complete
     players_level = PlayersLevel.find_by(id: players_level_params[:players_level_id])
     if players_level
-      if players_level.player.id == players_level_params[:player_id].to_i
+      # if players_level.player_id == players_level_params[:player_id].to_i
         players_level.update({time_completed: Time.current, correct_answers: players_level_params[:correct_answers]})
         players_level.add_resources
         players_level.player.level_up(players_level.level.experience)
         render json: { player: players_level.player.as_json(methods: [:level, :buildings, :resources]) }, status: 202
-      else
-        render json: { errors: 'Not Authorized' }, status: 402
-      end
+      # else
+      #   render json: { errors: 'Not Authorized' }, status: 402
+      # end
     else
       render json: { errors: 'Level Attempt Not Found' }, status: 404
     end
