@@ -53,29 +53,29 @@ RSpec.describe PlayersBuildingsController, type: :controller do
   context 'POST upgrade' do
     it 'responds with status 200' do
       post :create, params: { data: { player_id: Player.first.id, building_name: Building.first.name, location: 4 }}
-      id = Player.first.players_buildings[0].id
+      pb = Player.first.players_buildings[0]
       b1 = Building.create({name: 'alchemy-lab-2', asset_link: 'alchemy-lab-2.png', building_level: 2, building_class: "Alchemy Lab", offsetX: -80, offsetY: -10 })
       BuildingsResource.create({resource_id: 2, building_id: b1.id, quantity: 1})
-      post :upgrade, params: { data: { player_id: Player.first.id, building_name: b1.id, players_building_id: id }}
+      post :upgrade, params: { data: { player_id: Player.first.id, building_name: b1.id, players_building_id: pb.id, location: pb.location  }}
       expect(response.status).to eq 200
     end
 
     it 'responds with a player' do
       post :create, params: { data: { player_id: Player.first.id, building_name: Building.first.name, location: 4 }}
-      id = Player.first.players_buildings[0].id
+      pb = Player.first.players_buildings[0]
       b1 = Building.create({name: 'alchemy-lab-3', asset_link: 'alchemy-lab-3.png', building_level: 2, building_class: "Alchemy Lab", offsetX: -80, offsetY: -10 })
       BuildingsResource.create({resource_id: Resource.first.id, building_id: b1.id, quantity: 1})
-      post :upgrade, params: { data: { player_id: Player.first.id, building_name: b1.name, players_building_id: id }}
+      post :upgrade, params: { data: { player_id: Player.first.id, building_name: b1.name, players_building_id: pb.id, location: pb.location  }}
       expect(JSON.parse(response.body)).to include('player')
     end
 
     it 'responds with an error if not enough resources' do
       post :create, params: { data: { player_id: Player.first.id, building_name: Building.first.name, location: 4 }}
-      id = Player.first.players_buildings[0].id
+      pb = Player.first.players_buildings[0]
       b1 = Building.create({name: 'alchemy-lab-3', asset_link: 'alchemy-lab-3.png', building_level: 2, building_class: "Alchemy Lab", offsetX: -80, offsetY: -10 })
         BuildingsResource.destroy_all
       BuildingsResource.create({resource_id: Resource.first.id, building_id: b1.id, quantity: 300})
-      post :upgrade, params: { data: { player_id: Player.first.id, building_name: b1.id, players_building_id: id }}
+      post :upgrade, params: { data: { player_id: Player.first.id, building_name: b1.id, players_building_id: pb.id, location: pb.location }}
       expect(JSON.parse(response.body)).to include('errors')
     end
   end
