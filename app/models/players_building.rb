@@ -22,6 +22,7 @@ class PlayersBuilding < ApplicationRecord
     return false unless self.buildable?
     return false unless self.valid?
     self.buildings_resources.each { |buildings_resource|
+      players_resource = PlayersResource.find_by(player: self.player, resource: buildings_resource.resource)
       players_resource.update(quantity: players_resource.quantity - buildings_resource.quantity)
     }
     self.save
