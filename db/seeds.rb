@@ -13,7 +13,7 @@ max_level = 15
 while Experience.count < max_level
   Experience.create({ level: Experience.count, experience_needed: Experience.count ** 3 })
 end
-PlayersLevels.destroy_all
+PlayersLevel.destroy_all
 Level.destoy_all
 Resource.destoy_all
 Player.destoy_all
