@@ -3,6 +3,8 @@ class PlayersLevel < ApplicationRecord
   belongs_to :level
 
   validates :time_started, { presence: true }
+  validates :player_id, uniqueness: { scope: :resource_id }
+
 
   def time
     self.time_completed.to_i - self.time_started.to_i
