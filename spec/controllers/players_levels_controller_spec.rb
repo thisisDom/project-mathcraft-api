@@ -105,7 +105,6 @@ RSpec.describe PlayersLevelsController, type: :controller do
       post :start,  params: { data: { level_id: level.id, player_id: player.id} }
       level_id  = JSON.parse(response.body)["player_level"]["id"]
       post :complete,  params: { id: level_id, data: { player_id: player.id, correct_answers: 10 } }
-      p JSON.parse(response.body)["player"]
       expect(JSON.parse(response.body)).to include("player")
     end
 
