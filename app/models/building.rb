@@ -3,7 +3,6 @@ class Building < ApplicationRecord
   has_many :players, { through: :players_buildings }
 
   has_many :buildings_resources
-  has_many :resources, { through: :buildings_resources }
 
   validates :asset_link, { presence: true,
                            uniqueness: { case_sensetive: false }
@@ -16,5 +15,12 @@ class Building < ApplicationRecord
                                                }
    validates :offsetY, :offsetX, { presence: true, numericality: true }
 
-
+   def resources
+     return {} if self.buildings_resources.length == 0
+     self.buildings_resources.map { |buildings_resource|
+        buildings_resource.serializable_hash.merge(buildings_resource.resource.serializable_hash) { |key, oldval, newval|
+          oldval
+        }
+     }
+   end
 end

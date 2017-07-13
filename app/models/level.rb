@@ -2,7 +2,6 @@ class Level < ApplicationRecord
   serialize :assets, ActiveRecord::Coders::NestedHstore
 
   has_many :levels_resources
-  has_many :resources, { through: :levels_resources }
 
   validates :assets, { presence: true }
   validates :position, { presence: true,
@@ -20,6 +19,15 @@ class Level < ApplicationRecord
 
   def generated_questions
 
+  end
+
+  def resources
+    return {} if self.levels_resources.length == 0
+    self.levels_resources.map { |levels_resource|
+       levels_resource.serializable_hash.merge(levels_resource.resource.serializable_hash) { |key, oldval, newval|
+         oldval
+       }
+    }
   end
 
   private
