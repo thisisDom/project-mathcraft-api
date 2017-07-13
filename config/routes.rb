@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 
   resources :playersbuildings, controller: 'players_buildings', only: [:index, :create, :destroy]
 
-  post '/playersbuildings/move', to: 'players_buildings#move'
   post '/playersbuildings/upgrade', to: 'players_buildings#upgrade'
 
   post '/playerslevels/start', to: 'players_levels#start'
@@ -22,7 +21,6 @@ Rails.application.routes.draw do
 
   resources :levels, only: [:index, :show]
   resources :buildings, only: [:index, :show]
-  resources :resources, only: [:index, :show]
 
   #route to get questions
   get '/generate', to: 'questions#generate'

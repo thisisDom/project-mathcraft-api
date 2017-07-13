@@ -28,7 +28,7 @@ class PlayersBuildingsController < ApplicationController
     players_building.building = Building.find_by(id: players_building_params[:building_id])
     if players_building.build
       if players_building.save
-        render json: { player: Player.find_by(id: players_building_params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
+        render json: { player: Player.find_by(id: players_building_params[:player_id]).as_json(methods: [:level, :buildings, :resources]) }
       else
         render json: { errors: players_building.errors.full_messages }
       end
@@ -37,18 +37,9 @@ class PlayersBuildingsController < ApplicationController
     end
   end
 
-  def move
-    players_building = PlayersBuildings.find_by(id: players_building_params[:players_building_id])
-    if players_building.update(location: players_building_params[:location])
-      render json: { player: Player.find_by(id: players_building_params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
-    else
-      render json: { errors: players_building.errors.full_messages }
-    end
-  end
-
   def destroy
     PlayersBuilding.find_by(id: players_building_params[:players_building_id]).destroy
-    render json: {player: Player.find_by(id: players_building_params[:player_id]).as_json(methods: [:buildings, :resources, :level]) }
+    render json: {player: Player.find_by(id: players_building_params[:player_id]).as_json(methods: [:level, :buildings, :resources]) }
   end
 
   private
