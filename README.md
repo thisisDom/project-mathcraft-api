@@ -61,21 +61,121 @@ Example Response:
 
 
 ## Buildings
+
+### Get available Buildings
 ```
-POST https://mathcraft-api.herokuapp.com/playersbuildings/
+GET https://mathcraft-api.herokuapp.com/buildings
+```
+
+Example Response:
+```json
+// 20170718100500
+// https://mathcraft-api.herokuapp.com/buildings
+
+{
+   "buildings": [{
+                  "building_id": 1,
+                  "name": "magic-house-1",
+                  "asset_link": "/path/to/building.png",
+                  "building_class": "Magic House",
+                  "building_level": 1,
+                  "created_at": "2017-07-08 08:00:00",
+                  "updated_at": "2017-07-08 08:00:00",
+                  "resources": [{
+                              "building_id": 1,
+                              "resource_id": 1, 
+                              "name": "wood",
+                              "quantity": 20,
+                              "asset_link": "/path/to/resource.png",
+                              "created_at": "2017-07-08 08:00:00",
+                              "updated_at": "2017-07-08 08:00:00"
+                             }]
+                 }]
+}
+```
+
+
+### Get a Player's Buildings
+```
+GET https://mathcraft-api.herokuapp.com/playersbuildings/<player id>
+```
+
+Example Response:
+```json
+// 20170718100500
+// https://mathcraft-api.herokuapp.com/playersbuildings/<player id>
+
+{
+  "player": {
+               "buildings": [{
+                              "player_id": 1,
+                              "building_id": 1,
+                              "name": "magic-house-1",
+                              "location": 12,
+                              "offsetX": -105,
+                              "offsetY": -40,
+                              "asset_link": "/path/to/building.png",
+                              "building_class": "Magic House",
+                              "building_level": 1,
+                              "created_at": "2017-07-08 08:00:00",
+                              "updated_at": "2017-07-08 08:00:00"
+                             }]
+              }
+}
+```
+
+### Creating a Building
+
+```
+POST https://mathcraft-api.herokuapp.com/playersbuildings/<player id>
 ```
 Parameters:
 
 |  Attributes   |  Type   | Description                                                                    |
 |---------------|---------|--------------------------------------------------------------------------------|
-| player_id     | integer | The player id of the user belongs to                                           |
 | location      | integer | The tile location of the buildings(0-25)                                       |
 | building_name | string  | The name of the building being built(ex. "magic-house-1")                      |
 
 Example Response:
 ```json
 // 20170718100500
-// https://mathcraft-api.herokuapp.com/players/<player id>
+// https://mathcraft-api.herokuapp.com/playersbuildings/<player id>
+
+{
+  "player": {
+               "buildings": [{
+                              "player_id": 1,
+                              "building_id": 1,
+                              "name": "magic-house-1",
+                              "location": 12,
+                              "offsetX": -105,
+                              "offsetY": -40,
+                              "asset_link": "/path/to/building.png",
+                              "building_class": "Magic House",
+                              "building_level": 1,
+                              "created_at": "2017-07-08 08:00:00",
+                              "updated_at": "2017-07-08 08:00:00"
+                             }]
+              }
+}
+```
+
+
+### Upgrading a Building
+```
+POST https://mathcraft-api.herokuapp.com/playersbuildings/<player_id>/upgrade
+```
+Parameters:
+
+|  Attributes   |  Type   | Description                                                                    |
+|---------------|---------|--------------------------------------------------------------------------------|
+| location      | integer | The tile location of the buildings(0-25)                                       |
+| building_name | string  | The name of the building being built(ex. "magic-house-1")                      |
+
+Example Response:
+```json
+// 20170718100500
+// https://mathcraft-api.herokuapp.com/playersbuildings/upgrade
 
 {
   "player": {
