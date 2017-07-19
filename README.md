@@ -49,7 +49,7 @@ Example Response:
                              }],
                "resources": [{
                               "player_id": 1,
-                              "resource_id": 1, 
+                              "resource_id": 1,
                               "name": "wood",
                               "quantity": 20,
                               "asset_link": "/path/to/resource.png",
@@ -73,7 +73,7 @@ Example Response:
 // 20170718100500
 // https://mathcraft-api.herokuapp.com/levels
 
-{ 
+{
   "levels": [{
              "position": 1,
              "experience": 10,
@@ -109,7 +109,7 @@ Example Response:
 // 20170718100500
 // https://mathcraft-api.herokuapp.com/playerslevels/start
 
-{ 
+{
   "player_level": {
                      "player_id": 1,
                      "level_id": 10,
@@ -141,7 +141,7 @@ Example Response:
 // 20170718100500
 // https://mathcraft-api.herokuapp.com/playerslevels/start
 
-{ 
+{
   "player_level": {
                      "player_id": 1,
                      "level_id": 10,
@@ -177,7 +177,7 @@ Example Response:
                   "updated_at": "2017-07-08 08:00:00",
                   "resources": [{
                               "building_id": 1,
-                              "resource_id": 1, 
+                              "resource_id": 1,
                               "name": "wood",
                               "quantity": 20,
                               "asset_link": "/path/to/resource.png",
@@ -291,3 +291,35 @@ Example Response:
               }
 }
 ```
+
+### Generating Questions
+
+```
+GET https://mathcraft-api.herokuapp.com/generate/?type=<question_type>&difficulty=<question_difficulty>
+```
+Parameters:
+
+|  Attributes   |  Type   | Description                                               |
+|---------------|---------|-----------------------------------------------------------|
+| type          | string  | The type of question that will be asked (e.g addition)    |
+| difficulty    | string  | The difficulty of each question (e.g "hard")              |
+
+
+Example Response:
+```json
+// 20170718100500
+// https://mathcraft-api.herokuapp.com/generate/?type=addition&difficulty=hard
+
+{
+  "instructions":"
+    Return the sum of the two numbers",
+  "questions":
+    [
+      {"problem":"16 + 13","answer":29},{"problem":"29 + 27","answer":56},{"problem":"11 + 11","answer":22},{"problem":"28 + 18","answer":46},{"problem":"26 + 12","answer":38},{"problem":"22 + 19","answer":41},{"problem":"11 + 11","answer":22},{"problem":"21 + 17","answer":38},{"problem":"16 + 11","answer":27},{"problem":"18 + 12","answer":30},{"problem":"15 + 15","answer":30},{"problem":"23 + 19","answer":42},{"problem":"23 + 12","answer":35},{"problem":"28 + 27","answer":55},{"problem":"20 + 19","answer":39}
+    ]
+}
+```
+### Current Question Types
+
+  * Basic: Addition, Subtraction, Multiplication, Division
+  * Tens: Given a number, make it add up to 10 (or some target number)
