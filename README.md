@@ -59,6 +59,8 @@ Example Response:
 }
 ```
 
+
+## Buildings
 ```
 POST https://mathcraft-api.herokuapp.com/playersbuildings/
 ```
