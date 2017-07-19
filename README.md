@@ -57,7 +57,8 @@ Example Response:
                              }]
              }
 }
-                              
+```
+
 ```
 POST https://mathcraft-api.herokuapp.com/playersbuildings/
 ```
@@ -68,7 +69,6 @@ Parameters:
 | player_id     | integer | The player id of the user belongs to                                           |
 | location      | integer | The tile location of the buildings(0-25)                                       |
 | building_name | string  | The name of the building being built(ex. "magic-house-1")                      |
-
 
 Example Response:
 ```json
