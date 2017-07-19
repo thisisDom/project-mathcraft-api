@@ -45,7 +45,7 @@ Example Response:
                               "building_level": 1,
                               "created_at": "2017-07-08 08:00:00",
                               "updated_at": "2017-07-08 08:00:00"
-                             },{...}],
+                             }],
                "resources": [{
                               "player_id": 1,
                               "resource_id": 1, 
@@ -54,14 +54,14 @@ Example Response:
                               "asset_link": "/path/to/resource.png",
                               "created_at": "2017-07-08 08:00:00",
                               "updated_at": "2017-07-08 08:00:00"
-                             },{...}]
+                             }]
              }
 }
                               
 ```
 POST https://mathcraft-api.herokuapp.com/playersbuildings/
 ```
-Parameters (note that all parameters are optional):
+Parameters:
 
 |  Attributes   |  Type   | Description                                                                    |
 |---------------|---------|--------------------------------------------------------------------------------|
@@ -74,6 +74,7 @@ Example Response:
 ```json
 // 20170718100500
 // https://mathcraft-api.herokuapp.com/players/<player id>
+
 {
   "player": {
                "buildings": [{
@@ -88,7 +89,7 @@ Example Response:
                               "building_level": 1,
                               "created_at": "2017-07-08 08:00:00",
                               "updated_at": "2017-07-08 08:00:00"
-                             },{...}]
+                             }]
               }
 }
 ```
