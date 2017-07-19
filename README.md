@@ -292,6 +292,7 @@ Example Response:
 }
 ```
 
+## Questions
 ### Generating Questions
 
 ```
@@ -315,7 +316,21 @@ Example Response:
     Return the sum of the two numbers",
   "questions":
     [
-      {"problem":"16 + 13","answer":29},{"problem":"29 + 27","answer":56},{"problem":"11 + 11","answer":22},{"problem":"28 + 18","answer":46},{"problem":"26 + 12","answer":38},{"problem":"22 + 19","answer":41},{"problem":"11 + 11","answer":22},{"problem":"21 + 17","answer":38},{"problem":"16 + 11","answer":27},{"problem":"18 + 12","answer":30},{"problem":"15 + 15","answer":30},{"problem":"23 + 19","answer":42},{"problem":"23 + 12","answer":35},{"problem":"28 + 27","answer":55},{"problem":"20 + 19","answer":39}
+      {"problem":"16 + 13","answer":29},
+      {"problem":"29 + 27","answer":56},
+      {"problem":"11 + 11","answer":22},
+      {"problem":"28 + 18","answer":46},
+      {"problem":"26 + 12","answer":38},
+      {"problem":"22 + 19","answer":41},
+      {"problem":"11 + 11","answer":22},
+      {"problem":"21 + 17","answer":38},
+      {"problem":"16 + 11","answer":27},
+      {"problem":"18 + 12","answer":30},
+      {"problem":"15 + 15","answer":30},
+      {"problem":"23 + 19","answer":42},
+      {"problem":"23 + 12","answer":35},
+      {"problem":"28 + 27","answer":55},
+      {"problem":"20 + 19","answer":39}
     ]
 }
 ```
