@@ -21,7 +21,7 @@ GET https://mathcraft-api.herokuapp.com/players/<player_id>
 Example Response:
 ```json
 // 20170718100500
-// https://mathcraft-api.herokuapp.com/players/<player id>
+// https://mathcraft-api.herokuapp.com/players/<player_id>
 
 {
   "player": {
@@ -59,6 +59,35 @@ Example Response:
 }
 ```
 
+## Levels
+
+## Get all levels(ordered by position)
+```
+GET https://mathcraft-api.herokuapp.com/levels
+```
+
+Example Response:
+```json
+// 20170718100500
+// https://mathcraft-api.herokuapp.com/levels
+
+{ 
+  "levels": [{
+             "position": 1,
+             "experience": 10,
+             "time_limit": 60,
+             "assets": {
+                          "boss": "",
+                          "minion": ["minion_1.png", "minion_2.png"],
+                          "phaser-background": "phaser-background.png",
+                          "calculator-background": "calculator-background.png",
+                        },
+              "title": "Forest",
+              "level_type": "time attack",
+              "level_requirement": 0
+             }]
+}
+```
 
 ## Buildings
 
@@ -97,13 +126,13 @@ Example Response:
 
 ### Get a Player's Buildings
 ```
-GET https://mathcraft-api.herokuapp.com/playersbuildings/<player id>
+GET https://mathcraft-api.herokuapp.com/playersbuildings/<player_id>
 ```
 
 Example Response:
 ```json
 // 20170718100500
-// https://mathcraft-api.herokuapp.com/playersbuildings/<player id>
+// https://mathcraft-api.herokuapp.com/playersbuildings/<player_id>
 
 {
   "player": {
@@ -127,7 +156,7 @@ Example Response:
 ### Creating a Building
 
 ```
-POST https://mathcraft-api.herokuapp.com/playersbuildings/<player id>
+POST https://mathcraft-api.herokuapp.com/playersbuildings/<player_id>
 ```
 Parameters:
 
@@ -139,7 +168,7 @@ Parameters:
 Example Response:
 ```json
 // 20170718100500
-// https://mathcraft-api.herokuapp.com/playersbuildings/<player id>
+// https://mathcraft-api.herokuapp.com/playersbuildings/<player_id>
 
 {
   "player": {
@@ -175,7 +204,7 @@ Parameters:
 Example Response:
 ```json
 // 20170718100500
-// https://mathcraft-api.herokuapp.com/playersbuildings/upgrade
+// https://mathcraft-api.herokuapp.com/playersbuildings/<player_id>/upgrade
 
 {
   "player": {
