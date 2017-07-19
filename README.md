@@ -36,7 +36,7 @@ Example Response:
                "buildings": {
                               "player_id": 1,
                               "building_id": 1,
-                              "name": "magic-house-1"
+                              "name": "magic-house-1",
                               "location": 12,
                               "offsetX": -105,
                               "offsetY": -40,
@@ -50,7 +50,7 @@ Example Response:
                               "player_id": 1,
                               "resource_id": 1, 
                               "name": "wood",
-                              "quantity" 20,
+                              "quantity": 20,
                               "asset_link": "/path/to/resource.png",
                               "created_at": "2017-07-08 08:00:00",
                               "updated_at": "2017-07-08 08:00:00",
