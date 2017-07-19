@@ -27,7 +27,7 @@ Example Response:
   "player": {
                "id": 1,
                "username": "this_is_Dom",
-               "email_address": "this_is_Dom@this_is_Dom.com,
+               "email_address": "this_is_Dom@this_is_Dom.com",
                "avatar_asset_link": "/path/to/avatar.png",
                "experience": 100,
                "created_at": "2017-07-17 10:00:00",
