@@ -14,6 +14,7 @@ Documentation for various API resources can be found in the following sections:
 ## Players
 
 ### Fetch A Player
+
 ```
 GET https://mathcraft-api.herokuapp.com/players/<player_id>
 ```
@@ -61,7 +62,8 @@ Example Response:
 
 ## Levels
 
-## Get all levels(ordered by position)
+### Get all levels (sorted by order position)
+
 ```
 GET https://mathcraft-api.herokuapp.com/levels
 ```
@@ -89,9 +91,71 @@ Example Response:
 }
 ```
 
+### Starting A level
+
+```
+POST https://mathcraft-api.herokuapp.com/playerslevels/start
+```
+
+Parameters:
+
+|  Attributes |  Type   | Description                                                                    |
+|-------------|---------|--------------------------------------------------------------------------------|
+| level_id    | integer | The id of the level                                                            |
+| player_id   | integer | The id of the player                                                           |
+
+Example Response:
+```json
+// 20170718100500
+// https://mathcraft-api.herokuapp.com/playerslevels/start
+
+{ 
+  "player_level": {
+                     "player_id": 1,
+                     "level_id": 10,
+                     "time_started": "2017-07-18 10:05:00",
+                     "time_complete": "",
+                     "correct_answers": ,
+                     "created_at": "2017-07-18 10:05:00",
+                     "updated_at": "2017-07-18 10:05:00"
+                   }
+}
+```
+
+### Completing A level
+
+```
+POST https://mathcraft-api.herokuapp.com/playerslevels/complete
+```
+
+Parameters:
+
+|  Attributes      |  Type   | Description                                 |
+|------------------|---------|---------------------------------------------|
+| players_level_id | integer | The id of the players_level played          |
+| player_id        | integer | The id of the player                        |
+| correct_answers  | integer | The number of questions answered correctly  |
+
+```json
+// 20170718100500
+// https://mathcraft-api.herokuapp.com/playerslevels/start
+
+{ 
+  "player_level": {
+                     "player_id": 1,
+                     "level_id": 10,
+                     "time_started": "2017-07-18 10:05:00",
+                     "time_complete": "",
+                     "correct_answers": ,
+                     "created_at": "2017-07-18 10:05:00",
+                     "updated_at": "2017-07-18 10:05:00"
+                   }
+}
+```
 ## Buildings
 
 ### Get available Buildings
+
 ```
 GET https://mathcraft-api.herokuapp.com/buildings
 ```
@@ -125,6 +189,7 @@ Example Response:
 
 
 ### Get a Player's Buildings
+
 ```
 GET https://mathcraft-api.herokuapp.com/playersbuildings/<player_id>
 ```
@@ -158,12 +223,13 @@ Example Response:
 ```
 POST https://mathcraft-api.herokuapp.com/playersbuildings/<player_id>
 ```
+
 Parameters:
 
-|  Attributes   |  Type   | Description                                                                    |
-|---------------|---------|--------------------------------------------------------------------------------|
-| location      | integer | The tile location of the buildings(0-25)                                       |
-| building_name | string  | The name of the building being built(ex. "magic-house-1")                      |
+|  Attributes   |  Type   | Description                                               |
+|---------------|---------|-----------------------------------------------------------|
+| location      | integer | The tile location of the buildings(0-25)                  |
+| building_name | string  | The name of the building being built(ex. "magic-house-1") |
 
 Example Response:
 ```json
@@ -189,17 +255,17 @@ Example Response:
 }
 ```
 
-
 ### Upgrading a Building
+
 ```
 POST https://mathcraft-api.herokuapp.com/playersbuildings/<player_id>/upgrade
 ```
 Parameters:
 
-|  Attributes   |  Type   | Description                                                                    |
-|---------------|---------|--------------------------------------------------------------------------------|
-| location      | integer | The tile location of the buildings(0-25)                                       |
-| building_name | string  | The name of the building being built(ex. "magic-house-1")                      |
+|  Attributes   |  Type   | Description                                               |
+|---------------|---------|-----------------------------------------------------------|
+| location      | integer | The tile location of the buildings(0-25)                  |
+| building_name | string  | The name of the building being built(ex. "magic-house-1") |
 
 Example Response:
 ```json
