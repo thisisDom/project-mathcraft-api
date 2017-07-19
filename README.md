@@ -300,10 +300,10 @@ GET https://mathcraft-api.herokuapp.com/generate/?type=<question_type>&difficult
 ```
 Parameters:
 
-|  Attributes   |  Type   | Description                                               |
-|---------------|---------|-----------------------------------------------------------|
-| type          | string  | The type of question that will be asked (e.g addition)    |
-| difficulty    | string  | The difficulty of each question (e.g "hard")              |
+|  Attributes   |  Type   | Description                                                                                  |
+|---------------|---------|----------------------------------------------------------------------------------------------|
+| type          | string  | The type of question that will be asked (e.g addition, multiplication, subtraction, division)|
+| difficulty    | string  | The difficulty of each question (e.g easy, medium, hard)                                     |
 
 
 Example Response:
